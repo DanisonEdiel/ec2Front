@@ -1,4 +1,4 @@
-name: Build and Push to Docker Hub
+name: Build, Push to Docker Hub and Deploy to EC2
 
 on:
   push:
@@ -30,3 +30,23 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/ec2front:latest
           ${{ secrets.DOCKERHUB_USERNAME }}/ec2front:${{ github.sha }}
+          
+    - name: Configure SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+        
+    - name: Deploy to EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no ${{ secrets.EC2_USERNAME }}@${{ secrets.EC2_HOST }} \
+          'docker stop ec2front || true && \
+           docker rm ec2front || true && \
+           docker pull ${{ secrets.DOCKERHUB_USERNAME }}/ec2front:latest && \
+           docker run -d \
+             --name ec2front \
+             --restart always \
+             -p 80:80 \
+             -e VITE_API_URL=${{ vars.API_URL || 'http://localhost:8000' }} \
+             ${{ secrets.DOCKERHUB_USERNAME }}/ec2front:latest'

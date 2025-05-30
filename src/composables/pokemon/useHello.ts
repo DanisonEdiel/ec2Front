@@ -10,7 +10,7 @@ const fetchHello = async (): Promise<string> => {
     console.log('Iniciando petición a la API...');
     
     // Verificar la URL base que se está usando
-    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    const baseUrl = import.meta.env.VITE_API_URL || 'http://54.157.59.239:5000';
     console.log('URL base de la API:', baseUrl);
     
     // Hacer la petición y guardar la respuesta completa para depuración

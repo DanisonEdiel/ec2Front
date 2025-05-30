@@ -11,7 +11,7 @@ RUN npm ci
 # Copiar el resto de archivos del proyecto
 COPY . .
 
-# Construir la aplicación
+# Construir la aplicación (usará .env.production automáticamente)
 RUN npm run build
 
 # Etapa de producción

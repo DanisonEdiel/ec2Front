@@ -13,7 +13,8 @@ onMounted(() => {
 // Función para hacer una petición directa sin Vue Query
 const fetchDirectly = async () => {
   try {
-    const response = await fetch('http://localhost:8080/api/hello');
+    const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+    const response = await fetch(`${apiUrl}/api/hello`);
     const text = await response.text();
     console.log('Respuesta directa:', response);
     console.log('Contenido de la respuesta:', text);

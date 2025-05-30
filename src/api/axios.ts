@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const baseURL = import.meta.env.VITE_API_URL;
+// Obtener la URL base de las variables de entorno o usar un valor por defecto
+const baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+
+console.log('API URL configurada:', baseURL);
 
 export const api = axios.create({
   baseURL: baseURL,

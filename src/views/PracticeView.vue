@@ -31,7 +31,7 @@ const fetchDirectly = async () => {
     
     <div class="response-section">
       <h3>Respuesta de Vue Query:</h3>
-      <div v-if="isHelloFetching">Cargando...</div>
+      <div v-if="isHelloFetching">Cargando..</div>
       <div v-else-if="isHelloError" class="error">
         <p>Error: {{ error?.message }}</p>
         <p>Detalles: {{ errorDetails }}</p>

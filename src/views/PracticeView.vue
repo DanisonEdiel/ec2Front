@@ -36,7 +36,7 @@ const fetchDirectly = async () => {
         <p>Detalles: {{ errorDetails }}</p>
       </div>
       <div v-else>
-        <p><strong>Contenido recibido:</strong> "{{ hello }}"</p>
+        <p><strong>Contenido recibido: </strong> "{{ hello }}"</p>
         <pre v-if="responseDebug" class="debug-info">{{ JSON.stringify(responseDebug, null, 2) }}</pre>
       </div>
       <button @click="() => refetch()">Recargar</button>

@@ -27,7 +27,7 @@ const fetchDirectly = async () => {
 
 <template>
   <div class="debug-container">
-    <h2>Prueba de API</h2>
+    <h2>API Test</h2>
     
     <div class="response-section">
       <h3>Respuesta de Vue Query:</h3>
